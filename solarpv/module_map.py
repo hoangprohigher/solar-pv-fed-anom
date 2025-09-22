@@ -80,7 +80,7 @@ def build_module_map_from_files(
 
 def choose_record(module_name: str, module_map: Dict[str, Any]) -> Dict[str, Any]:
     key = _norm(module_name)
-    return {
-        'sandia': module_map.get('sandia', {}).get(key),
-        'character': module_map.get('character', {}).get(key),
-    }
+        return { 
+            'sandia': module_map.get('sandia', {}).get(key), 
+            'character': module_map.get('character', {}).get(key), 
+        }

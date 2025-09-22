@@ -46,6 +46,8 @@ def build_vae_keras(
         tf.reduce_sum(1 + z_logvar - tf.square(z_mean) - tf.exp(z_logvar), axis=1)
     )
     vae.add_loss(recon + 1e-3 * kl)
-    vae.compile(optimizer=optimizers.Adam(lr))
+    vae.compile(
+        optimizer=optimizers.Adam(lr)
+    )
     enc = Model(inp, z_mean)
     return vae, enc

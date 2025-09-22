@@ -27,7 +27,6 @@ def train_one(
         cfg['model']['latent_dim'],
         cfg['model']['learning_rate'],
     )
-            prefix = f"{site['name']}__{module}".replace('/', '_')  # Ensure line is wrapped
         Xs,
         Xs,
         epochs=cfg['model']['epochs_local'],

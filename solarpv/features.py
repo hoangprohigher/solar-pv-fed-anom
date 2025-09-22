@@ -44,7 +44,9 @@ def engineer_features(df: pd.DataFrame) -> pd.DataFrame:
 def select_training_matrix(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     num = df.select_dtypes(include=['number']).copy()
     drop_cols = [
-        c for c in ['Pm', 'Pm_calc', 'Imp', 'Vmp', 'Isc', 'Voc'] if c in num.columns
+        c for c in [
+            'Pm', 'Pm_calc', 'Imp', 'Vmp', 'Isc', 'Voc'
+        ] if c in num.columns
     ]
     X = num.drop(columns=drop_cols, errors='ignore').dropna()
     return df.loc[X.index], X

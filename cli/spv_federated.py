@@ -15,7 +15,9 @@ def main(config_path: str):
     gw = fedavg(weight_sets)
     joblib.dump(gw, os.path.join(mdir, 'global_vae_weights.pkl'))
     msg = f"[FedAvg] Wrote global_vae_weights.pkl from {len(weight_sets)} clients"
-    print(msg)
+    print(
+        msg
+    )
 
 
 if __name__ == "__main__":
