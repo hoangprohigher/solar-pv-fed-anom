@@ -7,6 +7,7 @@ from .io_schema import rename_columns
 from .qc import apply_basic_qc
 from .features import engineer_features, enrich_with_module_labels
 
+
 @timeit
 def load_site(site_cfg: dict, columns_map: dict) -> pd.DataFrame:
     dfs = []
@@ -27,20 +28,24 @@ def load_site(site_cfg: dict, columns_map: dict) -> pd.DataFrame:
         raise FileNotFoundError(f"No CSV under {site_cfg['path']}")
     return pd.concat(dfs)
 
+
 def main(config_path: str):
     cfg = load_cfg(config_path)
     out_dir = cfg['preprocess']['out_dir']
     os.makedirs(out_dir, exist_ok=True)
     for site in cfg['data']['sites']:
         df = load_site(site, cfg['preprocess']['columns'])
-        df = apply_basic_qc(df, cfg['preprocess'].get('drop_maintenance_windows',True),
-                               cfg['preprocess'].get('drop_when_precip_or_dew',True))
-        rule = cfg['preprocess'].get('resample_rule','')
+        df = apply_basic_qc(
+            df,
+            cfg['preprocess'].get('drop_maintenance_windows', True),
+            cfg['preprocess'].get('drop_when_precip_or_dew', True),
+        )
+        rule = cfg['preprocess'].get('resample_rule', '')
         if rule:
             df = df.resample(rule).mean()
         df = engineer_features(df)
         # attach per-module labels from configs/module_map.json if exists
-        mp_json = os.path.join('configs','module_map.json')
+        mp_json = os.path.join('configs', 'module_map.json')
         df = enrich_with_module_labels(df, mp_json)
         out_path = os.path.join(out_dir, f"{site['name']}.parquet")
         df.to_parquet(out_path)
