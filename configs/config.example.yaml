@@ -1,0 +1,56 @@
+data:
+  data_root: "DATA FOR VALIDATING MODELS"
+  sites:
+    - {name: Cocoa,  path: "DATA FOR VALIDATING MODELS/Cocoa"}
+    - {name: Eugene, path: "DATA FOR VALIDATING MODELS/Eugene"}
+    - {name: Golden, path: "DATA FOR VALIDATING MODELS/Golden"}
+  users_manual_pdf: "/mnt/data/Users Manual TP-5200-61610.pdf"
+  sandia_coeffs_xlsx: "/mnt/data/SandiaModelCoefficients.xlsx"
+  characterization_xlsx: "/mnt/data/CharacterDataForPVModels 9-26-14.xlsx"
+
+preprocess:
+  resample_rule: "1min"
+  drop_maintenance_windows: true
+  drop_when_precip_or_dew: true
+  columns:
+    datetime: "DateTime"
+    site_id:  "Site"
+    poa: "POA"
+    ghi: "GHI"
+    dhi: "DHI"
+    dni: "DNI"
+    t_back: "BackTemp"
+    wind: "WindSpeed"
+    imp: "Imp"
+    vmp: "Vmp"
+    pm:  "Pm"
+    isc: "Isc"
+    voc: "Voc"
+    soiling_derate: "SoilingDerate"
+    qa_residual:    "QA_Residual"
+    maint_flag:     "Maintenance"
+  out_dir: "data/processed"
+
+model:
+  backend: "keras"
+  hidden_dim: 64
+  latent_dim: 8
+  epochs_local: 5
+  batch_size: 256
+  learning_rate: 1e-3
+
+federated:
+  rounds: 3
+  frac_clients: 1.0
+
+svdd:
+  nu: 0.1
+  gamma: "scale"
+
+explain:
+  shap: false
+  shap_sample: 512
+  top_k_features: 10
+
+report:
+  out_dir: "reports"

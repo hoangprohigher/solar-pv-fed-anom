@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  solar-pv-fed-anom:
+    build: .
+    image: solar-pv-fed-anom:latest
+    container_name: solar-pv-fed-anom
+    volumes:
+      - ./:/app
+    command: ["python", "-m", "cli.spv_preprocess", "--config", "configs/config.yaml"]

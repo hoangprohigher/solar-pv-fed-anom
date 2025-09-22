@@ -1,0 +1,13 @@
+numpy
+pandas
+scipy
+scikit-learn
+pyyaml
+tensorflow>=2.10
+matplotlib
+plotly
+jinja2
+pyarrow
+openpyxl
+pytest
+flake8
