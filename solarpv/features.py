@@ -1,5 +1,6 @@
 from __future__ import annotations
-import numpy as np, pandas as pd
+import numpy as np
+import pandas as pd
 
 def compute_cell_temp(t_back: pd.Series, poa: pd.Series) -> pd.Series:
     return t_back + 2.0*(poa/1000.0)
@@ -39,7 +40,8 @@ def enrich_with_module_labels(df: pd.DataFrame, module_map_path: str|None=None) 
     """
     if module_map_path is None:
         return df
-    import json, os
+    import json
+    import os
     if not os.path.exists(module_map_path):
         return df
     with open(module_map_path,'r',encoding='utf-8') as f:

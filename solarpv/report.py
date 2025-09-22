@@ -1,5 +1,7 @@
 from __future__ import annotations
-import os, pandas as pd, matplotlib.pyplot as plt
+import os
+import pandas as pd
+import matplotlib.pyplot as plt
 def simple_report(scores_parquet: str, out_html: str):
     df = pd.read_parquet(scores_parquet)
     os.makedirs(os.path.dirname(out_html), exist_ok=True)

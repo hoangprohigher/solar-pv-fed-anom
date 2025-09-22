@@ -1,5 +1,6 @@
 from __future__ import annotations
-import numpy as np, pandas as pd
+import numpy as np
+import pandas as pd
 def top_features_by_residual_variance(columns: list[str], residuals: np.ndarray, k: int=10) -> pd.DataFrame:
     var = residuals.var(axis=0)
     idx = np.argsort(var)[::-1][:k]

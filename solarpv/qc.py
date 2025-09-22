@@ -1,5 +1,6 @@
 from __future__ import annotations
-import numpy as np, pandas as pd
+import numpy as np
+import pandas as pd
 
 def apply_basic_qc(df: pd.DataFrame, drop_maint: bool=True, drop_precip_dew: bool=True) -> pd.DataFrame:
     out = df.copy()

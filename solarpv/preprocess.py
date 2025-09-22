@@ -1,5 +1,7 @@
 from __future__ import annotations
-import os, re, pandas as pd
+import os
+import re
+import pandas as pd
 from .utils import load_cfg, list_csvs, timeit
 from .io_schema import rename_columns
 from .qc import apply_basic_qc

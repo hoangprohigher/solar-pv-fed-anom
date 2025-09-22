@@ -1,5 +1,10 @@
 from __future__ import annotations
-import os, glob, yaml, time, logging, random
+import os
+import glob
+import yaml
+import time
+import logging
+import random
 import numpy as np
 
 log = logging.getLogger("solarpv")
