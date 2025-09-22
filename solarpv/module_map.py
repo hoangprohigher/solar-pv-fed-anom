@@ -37,7 +37,10 @@ def build_module_map_from_files(
             raw = str(row[name_col])
             key = _norm(raw)
             rec = {'raw_name': raw, 'sheet': sheet, 'row_index': int(i)}
-            for k in ['a', 'b', 'A0', 'A1', 'A2', 'A3', 'A4', 'B0', 'B1', 'B2', 'B3', 'B4', 'B5']:
+            for k in [
+                'a', 'b', 'A0', 'A1', 'A2', 'A3', 'A4',
+                'B0', 'B1', 'B2', 'B3', 'B4', 'B5',
+            ]:
                 col = next((c for c in df.columns if c.lower() == k.lower()), None)
                 if col:
                     rec[k] = row.get(col)

@@ -9,6 +9,7 @@ from solarpv.features import select_training_matrix
 from solarpv.vae import build_vae_keras
 from solarpv.svdd import fit_svdd
 
+
 def main(config_path: str):
     cfg = load_cfg(config_path)
     out_dir = os.path.join(cfg['preprocess']['out_dir'], 'models')
@@ -37,10 +38,14 @@ def main(config_path: str):
         oc = fit_svdd(resid, cfg['svdd']['nu'], cfg['svdd']['gamma'])
         joblib.dump(scaler, os.path.join(out_dir, f"{site['name']}_scaler.pkl"))
         joblib.dump(oc, os.path.join(out_dir, f"{site['name']}_svdd.pkl"))
-        joblib.dump(vae.get_weights(), os.path.join(out_dir, f"{site['name']}_vae_weights.pkl"))
+        joblib.dump(
+            vae.get_weights(),
+            os.path.join(out_dir, f"{site['name']}_vae_weights.pkl"),
+        )
         with open(os.path.join(out_dir, f"{site['name']}_columns.json"), 'w') as f:
             json.dump(list(X.columns), f)
         print(f"[Train] Saved artifacts for {site['name']} in {out_dir}")
+
 
 if __name__ == "__main__":
     import argparse

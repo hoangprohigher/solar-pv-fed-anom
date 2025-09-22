@@ -36,7 +36,10 @@ def main(config_path: str, site: str, save_scores: bool, module: str | None = No
     except Exception:
         weights = joblib.load(os.path.join(mdir, f"{prefix}_vae_weights.pkl"))
     vae = rebuild_vae(
-        len(columns), cfg['model']['hidden_dim'], cfg['model']['latent_dim'], weights
+        len(columns),
+        cfg['model']['hidden_dim'],
+        cfg['model']['latent_dim'],
+        weights,
     )
     Xs = scaler.transform(X[columns].values)
     Xrec = vae.predict(Xs, verbose=0)
@@ -49,12 +52,15 @@ def main(config_path: str, site: str, save_scores: bool, module: str | None = No
         os.makedirs(os.path.join(cfg['preprocess']['out_dir'], 'scores'), exist_ok=True)
         tag = f"{site}__{module}" if module else site
         outp = os.path.join(
-            cfg['preprocess']['out_dir'], 'scores', f"{tag}_scores.parquet"
+            cfg['preprocess']['out_dir'],
+            'scores',
+            f"{tag}_scores.parquet",
         )
         out[['score', 'is_anom']].to_parquet(outp)
         print(f"[Score] Saved {outp}")
     else:
         print(out[['score', 'is_anom']].head())
+
 
 if __name__ == "__main__":
     import argparse

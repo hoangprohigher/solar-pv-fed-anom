@@ -15,7 +15,10 @@ def load_site(site_cfg: dict, columns_map: dict) -> pd.DataFrame:
         df = pd.read_csv(f)
         df = rename_columns(df, columns_map)
         if 'DateTime' not in df.columns:
-            raise ValueError('DateTime column missing; map it in YAML (preprocess.columns.datetime)')
+            raise ValueError(
+                'DateTime column missing; map it in YAML '
+                '(preprocess.columns.datetime)'
+            )
         df['DateTime'] = pd.to_datetime(df['DateTime'])
         df = df.set_index('DateTime').sort_index()
         df['Site'] = site_cfg['name']
@@ -49,7 +52,7 @@ def main(config_path: str):
         df = enrich_with_module_labels(df, mp_json)
         out_path = os.path.join(out_dir, f"{site['name']}.parquet")
         df.to_parquet(out_path)
-        print(f"[Preprocess] Saved {out_path} ({len(df)} rows)")
+    print(f"[Preprocess] Saved {out_path} ({len(df)} rows)")
 
 if __name__ == "__main__":
     import argparse

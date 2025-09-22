@@ -28,12 +28,16 @@ def engineer_features(df: pd.DataFrame) -> pd.DataFrame:
     for a, b in [('DHI', 'GHI'), ('DNI', 'GHI'), ('POA', 'GHI')]:
         if a in out.columns and b in out.columns:
             out[f'ratio_{a}_{b}'] = np.where(
-                out[b] > 1e-3, out[a] / out[b], np.nan
+                out[b] > 1e-3,
+                out[a] / out[b],
+                np.nan,
             )
     if {'Imp', 'Vmp'}.issubset(out.columns):
         out['Pm_calc'] = out['Imp'] * out['Vmp']
     out = out.join(time_features(out.index))
-    out = out.dropna(thresh=int(0.8 * len(out.columns)))
+    out = out.dropna(
+        thresh=int(0.8 * len(out.columns))
+    )
     return out
 
 

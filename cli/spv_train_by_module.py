@@ -10,6 +10,8 @@ from solarpv.vae import build_vae_keras
 from solarpv.svdd import fit_svdd
 
 
+    
+    
 def train_one(
     dfX: pd.DataFrame,
     columns: list[str],
@@ -25,7 +27,7 @@ def train_one(
         cfg['model']['latent_dim'],
         cfg['model']['learning_rate'],
     )
-    vae.fit(
+            prefix = f"{site['name']}__{module}".replace('/', '_')  # Ensure line is wrapped
         Xs,
         Xs,
         epochs=cfg['model']['epochs_local'],
