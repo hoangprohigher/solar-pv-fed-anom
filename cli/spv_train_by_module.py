@@ -9,8 +9,6 @@ from solarpv.features import select_training_matrix
 from solarpv.vae import build_vae_keras
 from solarpv.svdd import fit_svdd
 
-
-    
     
 def train_one(
     dfX: pd.DataFrame,
@@ -46,6 +44,8 @@ def train_one(
 
 def main(config_path: str):
     cfg = load_cfg(config_path)
+    
+
     out_dir = os.path.join(cfg['preprocess']['out_dir'], 'models')
     os.makedirs(out_dir, exist_ok=True)
     for site in cfg['data']['sites']:
