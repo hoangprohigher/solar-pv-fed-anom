@@ -1,7 +1,9 @@
 from __future__ import annotations
-import os, joblib
+import os
+import joblib
 from solarpv.utils import load_cfg
 from solarpv.fedavg import fedavg
+
 
 def main(config_path: str):
     cfg = load_cfg(config_path)
@@ -13,6 +15,7 @@ def main(config_path: str):
     gw = fedavg(weight_sets)
     joblib.dump(gw, os.path.join(mdir, 'global_vae_weights.pkl'))
     print(f"[FedAvg] Wrote global_vae_weights.pkl from {len(weight_sets)} clients")
+
 
 if __name__ == "__main__":
     import argparse

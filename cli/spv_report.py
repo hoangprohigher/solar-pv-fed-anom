@@ -3,6 +3,7 @@ import os
 from solarpv.utils import load_cfg
 from solarpv.report import simple_report
 
+
 def main(config_path: str):
     cfg = load_cfg(config_path)
     sdir = os.path.join(cfg['preprocess']['out_dir'], 'scores')
@@ -11,6 +12,7 @@ def main(config_path: str):
     out_html = os.path.join(cfg['report']['out_dir'], f"{site}_summary.html")
     simple_report(sp, out_html)
     print(f"[Report] {out_html}")
+
 
 if __name__ == "__main__":
     import argparse

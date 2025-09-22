@@ -1,6 +1,7 @@
 from __future__ import annotations
 import numpy as np
 
+
 def fedavg(weight_sets: list[list[np.ndarray]]) -> list[np.ndarray]:
     if not weight_sets:
         raise ValueError("No client weights")

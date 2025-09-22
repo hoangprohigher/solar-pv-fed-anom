@@ -9,7 +9,8 @@ def simple_report(scores_parquet: str, out_html: str):
     os.makedirs(os.path.dirname(out_html), exist_ok=True)
     fig = plt.figure()
     df['score'].plot(title='Anomaly score')
-    png = out_html.replace('.html','.png')
+    png = out_html.replace('.html', '.png')
     fig.savefig(png, bbox_inches='tight')
     with open(out_html, 'w', encoding='utf-8') as f:
-        f.write(f"<h1>Solar PV Anomaly Report</h1><img src='{os.path.basename(png)}'/>")
+        img = os.path.basename(png)
+        f.write(f"<h1>Solar PV Anomaly Report</h1><img src='{img}'/>")
