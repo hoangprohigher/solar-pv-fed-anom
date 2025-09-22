@@ -27,6 +27,7 @@ def train_one(
         cfg['model']['latent_dim'],
         cfg['model']['learning_rate'],
     )
+    vae.fit(
         Xs,
         Xs,
         epochs=cfg['model']['epochs_local'],

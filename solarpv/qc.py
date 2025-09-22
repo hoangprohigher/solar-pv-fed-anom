@@ -14,5 +14,8 @@ def apply_basic_qc(
         res = out['QA_Residual'].dropna()
         if len(res) > 50:
             m, s = res.mean(), res.std()
-            out = out[(out['QA_Residual'] > m - 3 * s) & (out['QA_Residual'] < m + 3 * s)]
+            out = out[
+                (out['QA_Residual'] > m - 3 * s)
+                & (out['QA_Residual'] < m + 3 * s)
+            ]
     return out

@@ -48,7 +48,9 @@ def select_training_matrix(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame
             'Pm', 'Pm_calc', 'Imp', 'Vmp', 'Isc', 'Voc'
         ] if c in num.columns
     ]
-    X = num.drop(columns=drop_cols, errors='ignore').dropna()
+    X = num.drop(
+        columns=drop_cols, errors='ignore'
+    ).dropna()
     return df.loc[X.index], X
 
 
@@ -67,7 +69,9 @@ def enrich_with_module_labels(
 
     if not os.path.exists(module_map_path):
         return df
-    with open(module_map_path, 'r', encoding='utf-8') as f:
+    with open(
+        module_map_path, 'r', encoding='utf-8'
+    ) as f:
         mp = json.load(f)
 
     def _norm(s: str) -> str:

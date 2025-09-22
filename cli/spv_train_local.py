@@ -40,9 +40,13 @@ def main(config_path: str):
         joblib.dump(oc, os.path.join(out_dir, f"{site['name']}_svdd.pkl"))
         joblib.dump(
             vae.get_weights(),
-            os.path.join(out_dir, f"{site['name']}_vae_weights.pkl"),
+            os.path.join(
+                out_dir, f"{site['name']}_vae_weights.pkl"
+            ),
         )
-        with open(os.path.join(out_dir, f"{site['name']}_columns.json"), 'w') as f:
+        with open(
+            os.path.join(out_dir, f"{site['name']}_columns.json"), 'w'
+        ) as f:
             json.dump(list(X.columns), f)
         print(f"[Train] Saved artifacts for {site['name']} in {out_dir}")
 

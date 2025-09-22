@@ -54,6 +54,7 @@ def main(config_path: str):
         df.to_parquet(out_path)
     print(f"[Preprocess] Saved {out_path} ({len(df)} rows)")
 
+
 if __name__ == "__main__":
     import argparse
     p = argparse.ArgumentParser()
