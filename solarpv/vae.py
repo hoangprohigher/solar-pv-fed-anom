@@ -43,7 +43,9 @@ def build_vae_keras(
         tf.reduce_sum(tf.square(inp - out), axis=1)
     )
     kl = -0.5 * tf.reduce_mean(
-        tf.reduce_sum(1 + z_logvar - tf.square(z_mean) - tf.exp(z_logvar), axis=1)
+        tf.reduce_sum(
+            1 + z_logvar - tf.square(z_mean) - tf.exp(z_logvar), axis=1
+        )
     )
     vae.add_loss(recon + 1e-3 * kl)
     vae.compile(

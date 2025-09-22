@@ -41,7 +41,9 @@ def build_module_map_from_files(
                 'a', 'b', 'A0', 'A1', 'A2', 'A3', 'A4',
                 'B0', 'B1', 'B2', 'B3', 'B4', 'B5',
             ]:
-                col = next((c for c in df.columns if c.lower() == k.lower()), None)
+                col = next(
+                    (c for c in df.columns if c.lower() == k.lower()), None
+                )
                 if col:
                     rec[k] = row.get(col)
             out['sandia'][key] = rec

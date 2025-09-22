@@ -1,9 +1,15 @@
+def fit_svdd(residuals: np.ndarray, nu: float = 0.1, gamma: str = 'scale') -> OneClassSVM:
+
+
 from __future__ import annotations
 
 import numpy as np
 from sklearn.svm import OneClassSVM
 
-def fit_svdd(residuals: np.ndarray, nu: float = 0.1, gamma: str = 'scale') -> OneClassSVM:
+
+def fit_svdd(
+    residuals: np.ndarray, nu: float = 0.1, gamma: str = 'scale'
+) -> OneClassSVM:
     oc = OneClassSVM(
         kernel='rbf', nu=nu, gamma=gamma
     )
